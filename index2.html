@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>K&H Solutions — Premium Webseiten</title>
+  <style>
+  /* 1. K&H Farb-Schutz: Verhindert, dass WordPress globale Textfarben aufzwingt */
+  #kh-page h1, #kh-page h2, #kh-page h3, #kh-page h4, #kh-page h5, #kh-page h6,
+  #kh-page p, #kh-page span, #kh-page a, #kh-page strong {
+      /* Holt sich die Priorität zurück, falls WordPress etwas überschreiben will */
+      color: currentColor; 
+      opacity: 1 !important;
+  }
+
+  /* Falls du den Texten auf den Slides eine bestimmte Klasse gegeben hast (z.B. .slide-title oder direkt im Style), 
+    stellen wir hier sicher, dass Weiß im Element-Kontext auch absolut Weiß bleibt: */
+  #kh-page .kh-showcase h3, 
+  #kh-page .kh-showcase p,
+  #kh-page .kh-showcase span {
+      color: #ffffff !important; /* Erzwingt das strahlende Weiß auf den Portfolio-Karten */
+  }
+  /* K&H WordPress Safe Full Width Reset */
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  .site-content,
+  .ast-container,
+  .content-area,
+  .entry-content,
+  .wp-site-blocks,
+  .wp-block-post-content,
+  .ast-article-single,
+  .ast-separate-container .ast-article-single {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .entry-content > *,
+  .wp-block-post-content > * {
+    max-width: none !important;
+  }
+
+  #kh-page, 
+  #kh-page *, 
+  #kh-page *::before, 
+  #kh-page *::after {
+    box-sizing: border-box !important;
+  }
+
+  #kh-page {
+    --kh-bg: #fbf8f1;
+    --kh-paper: #fffdf8;
+    --kh-ink: #111111;
+    --kh-muted: #67645e;
+    --kh-gold: #c99a2e;
+    --kh-line: rgba(17,17,17,.12);
+    --kh-shadow: 0 24px 70px rgba(32,25,12,.12);
+
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    overflow-x: hidden;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(201,154,46,.16), transparent 28%),
+      radial-gradient(circle at 100% 10%, rgba(19,33,59,.10), transparent 28%),
+      linear-gradient(180deg, #fbf8f1 0%, #f6efe3 100%);
+    color: var(--kh-ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  }
+
+  #kh-page a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #kh-page .kh-wrap {
+    width: min(1200px, calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  #kh-page .kh-nav {
+    position: sticky;
+    top: 16px;
+    z-index: 20;
+    margin: 16px auto 0;
+    width: min(1200px, calc(100% - 48px));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 24px;
+    border: 1px solid rgba(17,17,17,.10);
+    border-radius: 999px;
+    background: rgba(255,253,248,.88);
+    backdrop-filter: blur(24px);
+    box-shadow: 0 18px 60px rgba(32,25,12,.08);
+  }
+
+  #kh-page .kh-logo {
+    font-size: 24px;
+    font-weight: 950;
+    letter-spacing: -.05em;
+    color: var(--kh-ink);
+  }
+
+  #kh-page .kh-logo span {
+    color: var(--kh-gold);
+  }
+
+  #kh-page .kh-links {
+    display: flex;
+    gap: 24px;
+    color: #3f3d38;
+    font-weight: 800;
+  }
+
+  #kh-page .kh-cta {
+    background: #111;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 999px;
+    font-weight: 950;
+    transition: transform 0.2s;
+  }
+  #kh-page .kh-cta:hover {
+    transform: scale(1.02);
+  }
+
+  /* ==========================================
+     HERO SEKTION & PREMIUM WALL OPTIMIERUNG
+     ========================================== */
+  #kh-page .kh-hero {
+    position: relative;
+    min-height: 95vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 140px 0 120px;
+  }
+
+  #kh-page .kh-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(17,17,17,0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(17,17,17,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(circle at 30% 50%, black 40%, transparent 80%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .kh-hero-wall-bg {
+    position: absolute;
+    top: -20%;
+    right: -15%;
+    width: 75%;
+    height: 140%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    transform: perspective(1200px) rotateX(10deg) rotateY(-25deg) rotateZ(-8deg) scale(1.05);
+    pointer-events: none;
+    opacity: 0.75;
+  }
+
+  .kh-marquee-row {
+    display: flex;
+    gap: 32px;
+    width: max-content;
+    white-space: nowrap;
+  }
+
+  .kh-marquee-row.to-left { animation: slideLeft 65s linear infinite; }
+  .kh-marquee-row.to-right { animation: slideRight 65s linear infinite; }
+
+  .kh-wall-card {
+    width: 360px;
+    height: 230px;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 25px 55px rgba(32,25,12,0.12), 0 4px 12px rgba(0,0,0,0.04);
+    border: 1px solid rgba(17,17,17,0.08);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .kh-wall-card-bar {
+    height: 28px;
+    background: #f3efe6;
+    border-bottom: 1px solid rgba(17,17,17,0.06);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+  }
+  .kh-wall-card-bar .dots {
+    display: flex;
+    gap: 4px;
+  }
+  .kh-wall-card-bar .dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(17,17,17,0.2);
+  }
+  .kh-wall-card-bar .url-field {
+    flex: 1;
+    height: 16px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 4px;
+    margin: 0 16px;
+  }
+
+  .kh-wall-card-body {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .kh-wall-card-body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(17,17,17,0.55) 0%, rgba(17,17,17,0.25) 100%);
+    z-index: 1;
+  }
+
+  .kh-mini-nav {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .kh-mini-pill {
+    background: var(--kh-gold);
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-size: 9px;
+    color: #111;
+  }
+  .kh-mini-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+  }
+  .kh-mini-content h4 {
+    margin: 0 0 4px;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  .kh-mini-content p {
+    margin: 0;
+    font-size: 10px;
+    opacity: 0.8;
+    font-weight: 500;
+  }
+
+  @keyframes slideLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes slideRight {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  /* Vordergrund-Inhalt */
+  #kh-page .kh-hero-content {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+  }
+
+  #kh-page .kh-hero-left {
+    max-width: 650px;
+    padding-right: 20px;
+    padding-left: 24px;
+  }
+
+  #kh-page .kh-hero-right-box {
+    background: rgba(255, 253, 248, 0.8);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 32px;
+    padding: 44px;
+    box-shadow: 0 40px 90px rgba(32,25,12,0.16);
+    transform: translateY(10px);
+  }
+
+  #kh-page .kh-focus-tag {
+    color: #a0781a;
+    font-weight: 950;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  #kh-page .kh-box-title {
+    font-size: clamp(28px, 3vw, 38px);
+    line-height: 1.1;
+    letter-spacing: -.04em;
+    margin: 0 0 16px;
+    color: #111;
+    font-weight: 950;
+  }
+
+  #kh-page .kh-box-text {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--kh-muted);
+    margin: 0;
+    font-weight: 600;
+  }
+
+  #kh-page .kh-kicker {
+    display: inline-flex;
+    border: 1px solid rgba(201,154,46,.28);
+    color: #7d5a10;
+    background: rgba(201,154,46,.10);
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 950;
+    font-size: 15px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  #kh-page .kh-h1 {
+    font-size: clamp(44px, 6vw, 76px);
+    line-height: .94;
+    letter-spacing: -.05em;
+    margin: 24px 0 24px;
+    color: #111;
+    font-weight: 950;
+  }
+
+  #kh-page .kh-lead {
+    font-size: clamp(18px, 1.6vw, 21px) !important;
+    line-height: 1.55 !important;
+    color: #3f3d38 !important;
+    margin: 0;
+    font-weight: 600 !important;
+    background: rgba(255, 253, 248, 0.65);
+    padding: 16px 20px;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    display: inline-block;
+  }
+
+  #kh-page .kh-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+  }
+
+  #kh-page .kh-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 26px;
+    border-radius: 999px;
+    font-weight: 950;
+    border: 1px solid var(--kh-line);
+    transition: .25s cubic-bezier(.2,.8,.2,1);
+  }
+
+  #kh-page .kh-btn-dark {
+    background: #111;
+    color: #fff;
+  }
+
+  #kh-page .kh-btn-gold {
+    background: linear-gradient(135deg, #f8e8b0, #c99a2e);
+    color: #111;
+    border: 0;
+  }
+
+  #kh-page .kh-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(17,17,17,0.12);
+  }
+
+  /* Showcase Sektion */
+  #kh-page .kh-section {
+    padding: 100px 0;
+  }
+
+  #kh-page .kh-eyebrow {
+    color: var(--kh-gold);
+    font-weight: 950;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+  }
+
+  #kh-page .kh-title {
+    font-size: clamp(36px, 5vw, 68px);
+    line-height: .94;
+    letter-spacing: -.065em;
+    margin: 10px 0;
+    color: var(--kh-ink);
+    font-weight: 950;
+  }
+
+  #kh-page .kh-sub {
+    font-size: 19px;
+    color: var(--kh-muted);
+    line-height: 1.6;
+    max-width: 620px;
+    margin: 0;
+  }
+
+  #kh-page .kh-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  #kh-page .kh-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  #kh-page .kh-showcase {
+    border: 1px solid var(--kh-line);
+    border-radius: 36px;
+    background: rgba(255,253,248,.72);
+    box-shadow: var(--kh-shadow);
+    overflow: hidden;
+    transition: .45s ease;
+  }
+
+  #kh-page .kh-browser {
+    height: 330px;
+    padding: 16px;
+    border-bottom: 1px solid var(--kh-line);
+    background: #fffdf8;
+  }
+
+  #kh-page .kh-site {
+    height: 270px;
+    border-radius: 26px;
+    overflow: hidden;
+    border: 1px solid rgba(17,17,17,.10);
+    position: relative;
+  }
+
+  #kh-page .kh-rest {
+    background:
+      linear-gradient(120deg, rgba(0,0,0,.38), rgba(0,0,0,.06)),
+      url('https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80') center/cover;
+  }
+
+  #kh-page .kh-craft {
+    background:
+      linear-gradient(120deg, rgba(0,0,0,.42), rgba(0,0,0,.08)),
+      url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80') center/cover;
+  }
+
+  #kh-page .kh-consult {
+    background:
+      linear-gradient(120deg, rgba(0,0,0,.34), rgba(0,0,0,.04)),
+      url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80') center/cover;
+  }
+
+  #kh-page .kh-site h3 {
+    position: absolute;
+    left: 22px;
+    bottom: 58px;
+    margin: 0;
+    color: white;
+    font-size: 38px;
+    line-height: .93;
+    letter-spacing: -.06em;
+    text-shadow: 0 5px 28px rgba(0,0,0,.5);
+    font-weight: 950;
+  }
+
+  #kh-page .kh-site p {
+    position: absolute;
+    left: 22px;
+    bottom: 24px;
+    margin: 0;
+    color: white;
+    font-weight: 800;
+    text-shadow: 0 5px 20px rgba(0,0,0,.5);
+  }
+
+  #kh-page .kh-show-body {
+    padding: 28px;
+  }
+
+  #kh-page .kh-show-body h2 {
+    font-size: 34px;
+    letter-spacing: -.055em;
+    margin: 0 0 12px;
+    color: var(--kh-ink);
+    font-weight: 950;
+  }
+
+  #kh-page .kh-show-body p {
+    color: #111111 !important;
+    font-size: 18px;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  #kh-page .kh-tag {
+    display: inline-block;
+    margin-top: 14px;
+    background: #111;
+    color: #fff;
+    border-radius: 999px;
+    padding: 12px 16px;
+    font-weight: 950;
+  }
+
+  #kh-page .kh-split {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 28px;
+    align-items: center;
+  }
+
+  #kh-page .kh-panel {
+    border: 1px solid var(--kh-line);
+    border-radius: 38px;
+    background: rgba(255,253,248,.72);
+    box-shadow: var(--kh-shadow);
+    padding: 38px;
+  }
+
+  #kh-page .kh-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  #kh-page .kh-item {
+    display: flex;
+    gap: 14px;
+    padding: 18px;
+    border-radius: 24px;
+    background: #fff;
+    border: 1px solid rgba(17,17,17,.08);
+  }
+
+  #kh-page .kh-item b {
+    font-size: 20px;
+    color: var(--kh-ink);
+  }
+
+  #kh-page .kh-item p {
+    margin: 4px 0 0;
+    color: var(--kh-muted);
+    line-height: 1.45;
+  }
+
+  #kh-page .kh-num {
+    min-width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #111;
+    color: #fff;
+    font-weight: 950;
+  }
+
+  #kh-page .kh-process {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  #kh-page .kh-step {
+    padding: 28px;
+    border: 1px solid var(--kh-line);
+    border-radius: 28px;
+    background: rgba(255,255,255,.58);
+    box-shadow: 0 18px 40px rgba(32,25,12,.06);
+  }
+
+  #kh-page .kh-big {
+    font-size: 42px;
+    color: var(--kh-gold);
+    font-weight: 950;
+  }
+
+  #kh-page .kh-step h3 {
+    margin: 12px 0 8px;
+    font-size: 22px;
+    color: var(--kh-ink);
+    font-weight: 950;
+  }
+
+  #kh-page .kh-step p {
+    color: var(--kh-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* ==========================================
+     NEU INTEGRIRT: PHILOSOPHIE SEKTION (HELL)
+     ========================================== */
+  #kh-page .kh-philosophy {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 120px 0 60px;
+  }
+
+  #kh-page .kh-philosophy h2 {
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.15;
+    letter-spacing: -.045em;
+    color: #111;
+    font-weight: 950;
+    margin: 16px auto 28px;
+  }
+
+  #kh-page .kh-philosophy p {
+    color: #4a4742;
+    font-size: clamp(16px, 1.3vw, 20px);
+    line-height: 1.65;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  /* ==========================================
+     NEU INTEGRIERT: PREMIUM KONTAKT-BOX 
+     ========================================== */
+  #kh-page .kh-contact-wrapper {
+    padding: 40px 0 120px;
+  }
+
+  #kh-page .kh-premium-contact-card {
+    border-radius: 44px;
+    padding: 64px;
+    background: #111;
+    color: #fff;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+    box-shadow: 0 35px 100px rgba(17,17,17,.22);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #kh-page .kh-premium-contact-card::before {
+    content: "";
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(201,154,46,.32), transparent 68%);
+    pointer-events: none;
+  }
+
+  #kh-page .kh-contact-info-side h2 {
+    font-size: clamp(36px, 4.5vw, 56px);
+    line-height: .96;
+    letter-spacing: -.05em;
+    margin: 0 0 20px;
+    color: #fff;
+    font-weight: 950;
+  }
+
+  #kh-page .kh-contact-info-side p {
+    color: #d8d3c8;
+    font-size: 18px;
+    line-height: 1.55;
+    margin: 0 0 36px;
+    font-weight: 500;
+  }
+
+  #kh-page .kh-project-start-badge {
+    display: inline-block;
+  }
+
+  #kh-page .kh-project-start-badge .badge-label {
+    color: var(--kh-gold);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 950;
+    margin-bottom: 4px;
+  }
+
+  #kh-page .kh-project-start-badge .badge-time {
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 950;
+    color: #fff;
+    letter-spacing: -0.03em;
+  }
+
+  #kh-page .kh-project-start-badge .badge-sub {
+    font-size: 14px;
+    color: #a4a099;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  #kh-page .kh-form-side {
+    position: relative;
+    z-index: 2;
+  }
+
+  #kh-page .kh-form-group {
+    margin-bottom: 16px;
+  }
+
+  #kh-page .kh-form-control {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 16px 20px;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 16px;
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+
+  #kh-page .kh-form-control:focus {
+    outline: none;
+    border-color: var(--kh-gold);
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  #kh-page .kh-form-control::placeholder {
+    color: #8c8881;
+  }
+
+  #kh-page textarea.kh-form-control {
+    resize: vertical;
+    min-height: 110px;
+  }
+
+  #kh-page .kh-submit-btn {
+    width: 100%;
+    background: #ffffff;
+    color: #111111;
+    border: none;
+    border-radius: 999px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 950;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+  }
+
+  #kh-page .kh-submit-btn:hover {
+    background: #f4efe6;
+    transform: translateY(-2px);
+  }
+
+  /* ========================================== */
+
+  #kh-page .kh-footer {
+    padding: 45px 0 70px;
+    color: #6d6860;
+  }
+
+  #kh-page .kh-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: 1s cubic-bezier(.2,.8,.2,1);
+  }
+
+  #kh-page .kh-reveal.kh-show {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Responsive Anpassungen */
+  @media(max-width:1024px) {
+    #kh-page .kh-hero {
+      min-height: auto;
+      padding: 100px 0 80px;
+    }
+    #kh-page .kh-hero-content {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+    #kh-page .kh-hero-left {
+      max-width: 100%;
+      padding-right: 0;
+      padding-left: 0;
+    }
+    .kh-hero-wall-bg {
+      position: relative;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 320px;
+      transform: none;
+      opacity: 0.9;
+      margin-top: 20px;
+    }
+    #kh-page .kh-grid,
+    #kh-page .kh-split,
+    #kh-page .kh-process,
+    #kh-page .kh-premium-contact-card {
+      grid-template-columns: 1fr;
+    }
+    #kh-page .kh-links {
+      display: none;
+    }
+    #kh-page .kh-head {
+      display: block;
+    }
+    #kh-page .kh-premium-contact-card {
+      padding: 40px;
+      gap: 36px;
+    }
+  }
+
+  @media(max-width:620px) {
+    #kh-page .kh-h1 {
+      font-size: 42px;
+    }
+    #kh-page .kh-hero-right-box {
+      padding: 28px;
+    }
+    #kh-page .kh-browser {
+      height: 280px;
+    }
+    #kh-page .kh-site {
+      height: 220px;
+    }
+    #kh-page .kh-site h3 {
+      font-size: 30px;
+    }
+    #kh-page .kh-section {
+      padding: 64px 0;
+    }
+    #kh-page .kh-philosophy {
+      padding: 80px 0 40px;
+    }
+    #kh-page .kh-contact-wrapper {
+      padding: 20px 0 80px;
+    }
+    #kh-page .kh-premium-contact-card {
+      padding: 28px;
+      border-radius: 32px;
+    }
+  }
+
+  /* Styles für gleichzeitige Fehlermeldungen */
+  .kh-error-msg {
+    color: #ff4a4a;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 5px;
+    display: none; /* Standardmäßig unsichtbar */
+    text-align: left;
+    padding-left: 4px;
+  }
+  
+  /* Roter Rahmen bei Fehlern */
+  .kh-form-control.is-invalid {
+    border-color: #ff4a4a !important;
+    background: rgba(255, 74, 74, 0.05) !important;
+  }
+
+  /* Edle Erfolgsbox anstelle des hässlichen Alerts */
+  .kh-success-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--kh-gold);
+    border-radius: 24px;
+    padding: 32px;
+    text-align: center;
+    animation: fadeInContainer 0.5s ease forwards;
+  }
+  
+  .kh-success-box .success-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--kh-gold);
+    color: #111;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 auto 16px;
+  }
+
+  .kh-success-box h3 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    color: #fff;
+    font-weight: 950;
+  }
+
+  .kh-success-box p {
+    margin: 0;
+    color: #d8d3c8;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  @keyframes fadeInContainer {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* ==========================================================================
+    WORDPRESS-SAFE SCROLL-TO-TOP BUTTON (1:1 OPTIMIERT)
+    ========================================================================== */
+
+  /* 1. Alten WordPress / Astra Theme-Button radikal und auf allen Ebenen ausblenden */
+  #ast-scroll-top, 
+  .ast-scroll-top, 
+  [id*="ast-scroll-top"], 
+  [class*="ast-scroll-top"] {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+  }
+
+  /* 2. K&H Custom Scroll-Button Styling absichern */
+  #kh-page .kh-scroll-btn {
+      position: fixed !important;
+      bottom: 32px !important;
+      right: 32px !important;
+      width: 48px !important;
+      height: 48px !important;
+      background: #111111 !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(201, 154, 46, 0.3) !important;
+      border-radius: 14px !important;
+      cursor: pointer !important;
+      z-index: 99999 !important; /* Extrem hoch, damit kein WP-Element den Button überlagert */
+      display: grid !important;
+      place-items: center !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transform: translateY(15px) !important;
+      transition: all 0.4s cubic-bezier(.2, .8, .2, 1) !important;
+      box-shadow: 0 12px 32px rgba(17, 17, 17, 0.24) !important;
+      outline: none !important;
+  }
+
+  /* 3. Sichtbarer Zustand (gesteuert durch das JavaScript) */
+  #kh-page .kh-scroll-btn.is-visible {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) !important;
+  }
+
+  /* 4. Premium Hover-Effekt (Goldwechsel) in WordPress erzwingen */
+  #kh-page .kh-scroll-btn:hover {
+      background: #c99a2e !important; /* var(--kh-gold) direkt als Wert um WP-Fehler zu vermeiden */
+      color: #111111 !important;
+      border-color: #c99a2e !important;
+      transform: translateY(-4px) !important;
+      box-shadow: 0 16px 40px rgba(201, 154, 46, 0.3) !important;
+  }
+
+  /* 5. SVG-Pfeil im Button schützen */
+  #kh-page .kh-scroll-btn svg {
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      transition: transform 0.3s ease !important;
+  }
+
+  #kh-page .kh-scroll-btn:hover svg {
+      transform: translateY(-2px) !important;
+  }
+
+  /* 6. Responsive Anpassung für Smartphones */
+  @media (max-width: 768px) {
+      #kh-page .kh-scroll-btn {
+          bottom: 20px !important;
+          right: 20px !important;
+          width: 44px !important;
+          height: 44px !important;
+      }
+  }
+  </style>
+</head>
+<body>
+
+<div id="kh-page">
+  <nav class="kh-nav">
+    <a class="kh-logo" href="#">K<span>&amp;</span>H Solutions</a>
+    <div class="kh-links">
+      <a href="#showcase">Designs</a>
+      <a href="#leistung">Leistung</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#philosophie">Philosophie</a>
+    </div>
+    <a class="kh-cta" href="#kontakt-formular">Projekt anfragen</a>
+  </nav>
+
+  <main>
+    <!-- HERO SEKTION -->
+    <section class="kh-hero">
+      <div class="kh-hero-wall-bg">
+        <div class="kh-marquee-row to-left">
+          <div class="kh-wall-card">
+            <div class="kh-wall-card-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url-field"></div></div>
+            <div class="kh-wall-card-body" style="background-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&amp;fit=crop&amp;w=600&amp;q=80');">
+              <div class="kh-mini-nav"><span>LUIGI'S PASTA</span><span class="kh-mini-pill">Menü</span></div>
+              <div class="kh-mini-content"><h4>Traditionelle<br>Küche.</h4><p>Ristorante &amp; Catering</p></div>
+            </div>
+          </div>
+          <div class="kh-wall-card">
+            <div class="kh-wall-card-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url-field"></div></div>
+            <div class="kh-wall-card-body" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&amp;fit=crop&amp;w=600&amp;q=80');">
+              <div class="kh-mini-nav"><span>BAUWERK GMBH</span><span class="kh-mini-pill">Kontakt</span></div>
+              <div class="kh-mini-content"><h4>Ihr Partner<br>am Bau.</h4><p>Meisterbetrieb seit 1998</p></div>
+            </div>
+          </div>
+          <div class="kh-wall-card">
+            <div class="kh-wall-card-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url-field"></div></div>
+            <div class="kh-wall-card-body" style="background-image: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&amp;fit=crop&amp;w=600&amp;q=80');">
+              <div class="kh-mini-nav"><span>NEXUS FINANZ</span><span class="kh-mini-pill">Termin</span></div>
+              <div class="kh-mini-content"><h4>Vermögen<br>neu gedacht.</h4><p>Unabhängige Beratung</p></div>
+            </div>
+          </div>
+          <div class="kh-wall-card">
+            <div class="kh-wall-card-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url-field"></div></div>
+            <div class="kh-wall-card-body" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=600&amp;q=80');">
+              <div class="kh-mini-nav"><span>PIXEL CRAFT</span><span class="kh-mini-pill">Projekte</span></div>
+              <div class="kh-mini-content"><h4>Smarte Tech<br>Lösungen.</h4><p>App &amp; Web Development</p></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="kh-marquee-row to-right">
+          <div class="kh-wall-card">
+            <div class="kh-wall-card-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url-field"></div></div>
+            <div class="kh-wall-card-body" style="background-image: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&amp;fit=crop&amp;w=600&amp;q=80');">
+              <div class="kh-mini-nav"><span>STUDIO KRAFT</span><span class="kh-mini-pill">Kurse</span></div>
+              <div class="kh-mini-content"><h4>Stärke &amp;<br>Balance.</h4><p>Premium Fitness &amp; Yoga</p></div>
+            </div>
+          </div>
+          <div class="kh-wall-card">
+            <div class="kh-wall-card-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url-field"></div></div>
+            <div class="kh-wall-card-body" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&amp;fit=crop&amp;w=600&amp;q=80');">
+              <div class="kh-mini-nav"><span>HR ADVANCE</span><span class="kh-mini-pill">Recruiting</span></div>
+              <div class="kh-mini-content"><h4>Talente<br>finden.</h4><p>Moderne Mitarbeitergewinnung</p></div>
+            </div>
+          </div>
+          <div class="kh-wall-card">
+            <div class="kh-wall-card-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url-field"></div></div>
+            <div class="kh-wall-card-body" style="background-image: url('https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&amp;fit=crop&amp;w=600&amp;q=80');">
+              <div class="kh-mini-nav"><span>DENTAL CARE</span><span class="kh-mini-pill">Praxis</span></div>
+              <div class="kh-mini-content"><h4>Ihr Lächeln<br>im Fokus.</h4><p>Moderne Zahnmedizin</p></div>
+            </div>
+          </div>
+          <div class="kh-wall-card">
+            <div class="kh-wall-card-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url-field"></div></div>
+            <div class="kh-wall-card-body" style="background-image: url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&amp;fit=crop&amp;w=600&amp;q=80');">
+              <div class="kh-mini-nav"><span>LEGAL MIND</span><span class="kh-mini-pill">Kanzlei</span></div>
+              <div class="kh-mini-content"><h4>Klarheit &amp;<br>Recht.</h4><p>Wirtschafts- und Arbeitsrecht</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kh-marquee-row to-left">
+          <div class="kh-wall-card">
+            <div class="kh-wall-card-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url-field"></div></div>
+            <div class="kh-wall-card-body" style="background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&amp;fit=crop&amp;w=600&amp;q=80');">
+              <div class="kh-mini-nav"><span>COWORKING SPACE</span><span class="kh-mini-pill">Buchen</span></div>
+              <div class="kh-mini-content"><h4>Fokussiert<br>Arbeiten.</h4><p>Flexible Arbeitsplätze &amp; Büros</p></div>
+            </div>
+          </div>
+          <div class="kh-wall-card">
+            <div class="kh-wall-card-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url-field"></div></div>
+            <div class="kh-wall-card-body" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&amp;fit=crop&amp;w=600&amp;q=80');">
+              <div class="kh-mini-nav"><span>MÜLLER CONSULTING</span><span class="kh-mini-pill">Strategie</span></div>
+              <div class="kh-mini-content"><h4>Effizienz<br>steigern.</h4><p>Unternehmensberatung KMU</p></div>
+            </div>
+          </div>
+          <div class="kh-wall-card">
+            <div class="kh-wall-card-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url-field"></div></div>
+            <div class="kh-wall-card-body" style="background-image: url('https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&amp;fit=crop&amp;w=600&amp;q=80');">
+              <div class="kh-mini-nav"><span>MARKETLY</span><span class="kh-mini-pill">Analyse</span></div>
+              <div class="kh-mini-content"><h4>Wachstum &amp;<br>Erfolg.</h4><p>SEO &amp; Performance Marketing</p></div>
+            </div>
+          </div>
+          <div class="kh-wall-card">
+            <div class="kh-wall-card-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url-field"></div></div>
+            <div class="kh-wall-card-body" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=600&amp;q=80');">
+              <div class="kh-mini-nav"><span>LOGISTIC PRO</span><span class="kh-mini-pill">Flotte</span></div>
+              <div class="kh-mini-content"><h4>Sicher<br>Ankommen.</h4><p>Globale Transportlösungen</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kh-hero-content kh-wrap">
+        <div class="kh-hero-left kh-reveal">
+          <div class="kh-kicker">Websites mit Wow-Effekt</div>
+          <h1 class="kh-h1">Digitaler Auftritt.<br>Designer Gefühl.</h1>
+          <p class="kh-lead">K&amp;H Solutions entwickelt Webseiten, die nicht wie Vorlagen aussehen: klare Story, starke visuelle Bühne und ein Weg vom ersten Eindruck zur Anfrage.</p>
+          <div class="kh-actions">
+            <a class="kh-btn kh-btn-dark" href="#kontakt-formular">Kostenloses Erstgespräch</a>
+            <a class="kh-btn kh-btn-gold" href="#showcase">Designs entdecken</a>
+          </div>
+        </div>
+
+        <div class="kh-hero-right-box kh-reveal">
+          <div class="kh-focus-tag">Conversion-Fokus</div>
+          <h2 class="kh-box-title">Mehr Sichtbarkeit. Mehr Vertrauen.</h2>
+          <p class="kh-box-text">Unsere animierte Portfolio-Wand zeigt echte Web-Strukturen im Hintergrund. Vorne steht eine klare, ruhige Markenbotschaft mit genug Kontrast und echtem Designer-Charakter.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOWCASE SEKTION -->
+    <section id="showcase" class="kh-section kh-wrap">
+      <div class="kh-head kh-reveal">
+        <div>
+          <div class="kh-eyebrow">Beispiel Designs</div>
+          <h2 class="kh-title">So könnten Kunden-Webseiten aussehen.</h2>
+        </div>
+        <p class="kh-sub">Drei Richtungen für typische Kunden: Restaurant, Handwerksbetrieb und Dienstleister. Alles hell, hochwertig und seriös.</p>
+      </div>
+
+      <div class="kh-grid">
+        <article class="kh-showcase kh-reveal">
+          <div class="kh-browser">
+            <div class="kh-dots"><i></i><i></i><i></i></div>
+            <div class="kh-site kh-rest">
+              <div class="kh-mock-nav"><span></span><span class="kh-mock-pill"></span></div>
+              <h3>Fine Dining<br>neu inszeniert</h3>
+              <p>Menü · Reservierung · Galerie</p>
+            </div>
+          </div>
+          <div class="kh-show-body"><h2>Restaurant</h2><p>Für Reservierungen, Speisekarten, Atmosphäre und starke Bilder.</p><span class="kh-tag">Buchungen steigern</span></div>
+        </article>
+
+        <article class="kh-showcase kh-reveal">
+          <div class="kh-browser">
+            <div class="kh-dots"><i></i><i></i><i></i></div>
+            <div class="kh-site kh-craft">
+              <div class="kh-mock-nav"><span></span><span class="kh-mock-pill"></span></div>
+              <h3>Handwerk,<br>das Vertrauen schafft</h3>
+              <p>Leistungen · Referenzen · Anfrage</p>
+            </div>
+          </div>
+          <div class="kh-show-body"><h2>Handwerk</h2><p>Seriös, klar und auf neue Aufträge optimiert.</p><span class="kh-tag">Anfragen gewinnen</span></div>
+        </article>
+
+        <article class="kh-showcase kh-reveal">
+          <div class="kh-browser">
+            <div class="kh-dots"><i></i><i></i><i></i></div>
+            <div class="kh-site kh-consult">
+              <div class="kh-mock-nav"><span></span><span class="kh-mock-pill"></span></div>
+              <h3>Premium Look<br>für Experten</h3>
+              <p>Positionierung · Social Proof · Call</p>
+            </div>
+          </div>
+          <div class="kh-show-body"><h2>Dienstleister</h2><p>Für Berater, Coaches, Studios und lokale Experten.</p><span class="kh-tag">Marke aufbauen</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- LEISTUNG SEKTION -->
+    <section id="leistung" class="kh-section kh-wrap">
+      <div class="kh-split">
+        <div class="kh-reveal">
+          <div class="kh-eyebrow">Leistung</div>
+          <h2 class="kh-title">Nicht nur schön. Sondern verkaufsstark.</h2>
+          <p class="kh-sub">Eine gute Webseite muss sofort zeigen, wer ihr seid, warum man euch vertrauen kann und wie man euch kontaktiert.</p>
+          <div class="kh-actions"><a class="kh-btn kh-btn-dark" href="#kontakt-formular">Jetzt Projekt starten</a></div>
+        </div>
+
+        <div class="kh-panel kh-reveal">
+          <div class="kh-list">
+            <div class="kh-item"><div class="kh-num">1</div><div><b>Premium Design</b><p>Hochwertiger Look passend zur Branche.</p></div></div>
+            <div class="kh-item"><div class="kh-num">2</div><div><b>Mobile First</b><p>Perfekt auf Handy, Tablet und Desktop.</p></div></div>
+            <div class="kh-item"><div class="kh-num">3</div><div><b>Klare Anfrageführung</b><p>Buttons, Kontakt und Formulare dort, wo Kunden klicken.</p></div></div>
+            <div class="kh-item"><div class="kh-num">4</div><div><b>Animationen</b><p>Dezente Bewegungen, die hochwertig wirken statt abzulenken.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABLAUF SEKTION -->
+    <section id="ablauf" class="kh-section kh-wrap">
+      <div class="kh-reveal">
+        <div class="kh-eyebrow">Ablauf</div>
+        <h2 class="kh-title">Von Idee zu fertiger Webseite.</h2>
+      </div>
+
+      <div class="kh-process">
+        <div class="kh-step kh-reveal"><div class="kh-big">01</div><h3>Analyse</h3><p>Branche, Zielgruppe und Angebot verstehen.</p></div>
+        <div class="kh-step kh-reveal"><div class="kh-big">02</div><h3>Design</h3><p>Look &amp; Struktur als Premium-Konzept.</p></div>
+        <div class="kh-step kh-reveal"><div class="kh-big">03</div><h3>Umsetzung</h3><p>Schnell, responsive und sauber entwickelt.</p></div>
+        <div class="kh-step kh-reveal"><div class="kh-big">04</div><h3>Launch</h3><p>Online gehen und neue Anfragen sammeln.</p></div>
+      </div>
+    </section>
+
+    <!-- INTEGRIERT: PHILOSOPHIE (IM HELLEN CORPORATE LOOK) -->
+    <section id="philosophie" class="kh-philosophy kh-wrap kh-reveal">
+      <div class="kh-eyebrow">Unsere Philosophie</div>
+      <h2>„Große digitale Lösungen beginnen mit einem starken Fundament.“</h2>
+      <p>Wir glauben nicht an starre Baukastensysteme. Jedes Unternehmen verdient eine digitale Identität, die einzigartig ist. Deshalb begleiten wir Sie von der ersten Idee über das Design bis hin zur technischen Umsetzung – transparent, agil und zuverlässig.</p>
+    </section>
+
+    <!-- INTEGRIERT: PREMIUM KONTAKT-BOX MIT FORMULAR -->
+<section id="kontakt-formular" class="kh-contact-wrapper kh-wrap kh-reveal">
+      <div class="kh-premium-contact-card">
+        
+        <div class="kh-contact-info-side">
+          <h2>Bereit für eine Webseite, die nach Premium aussieht?</h2>
+          <p>Schreibt uns eure Branche und euer Ziel. Wir erstellen einen Auftritt, der professionell wirkt und Kunden überzeugt.</p>
+          
+          <div class="kh-project-start-badge">
+            <div class="badge-label">Projektstart</div>
+            <div class="badge-time">7–14 Tage</div>
+            <div class="badge-sub">Je nach Umfang, Texten und Bildern.</div>
+          </div>
+        </div>
+
+        <div class="kh-form-side">
+          <div id="kh-success-message" class="kh-success-box" style="display: none;">
+            <div class="success-icon">✓</div>
+            <h3>Vielen Dank für Ihre Anfrage!</h3>
+            <p>Wir haben Ihre Nachricht erhalten und melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+          </div>
+
+          <form id="kh-premium-form" action="#" method="POST" novalidate>
+            <div class="kh-form-group">
+              <input type="text" id="kh-name" class="kh-form-control" placeholder="Ihr Name">
+              <span class="kh-error-msg" id="error-kh-name">Bitte tragen Sie Ihren Namen ein.</span>
+            </div>
+            <div class="kh-form-group">
+              <input type="email" id="kh-email" class="kh-form-control" placeholder="E-Mail-Adresse">
+              <span class="kh-error-msg" id="error-kh-email">Bitte tragen Sie eine gültige E-Mail-Adresse ein.</span>
+            </div>
+            <div class="kh-form-group">
+              <input type="text" id="kh-industry" class="kh-form-control" placeholder="Unternehmen / Branche">
+            </div>
+            <div class="kh-form-group">
+              <textarea id="kh-message" class="kh-form-control" placeholder="Erzählen Sie uns kurz von Ihrem Vorhaben..."></textarea>
+              <span class="kh-error-msg" id="error-kh-message">Bitte beschreiben Sie kurz Ihr Vorhaben.</span>
+            </div>
+            <button type="submit" class="kh-submit-btn">Projekt anfragen</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="kh-footer kh-wrap">© 2026 K&amp;H Solutions — Premium Webseiten für Unternehmen.</footer>
+  <!-- K&H Eigener Premium Scroll-To-Top Button -->
+  <button id="kh-scroll-top" class="kh-scroll-btn" aria-label="Nach oben scrollen">
+    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+</div>
+
+<script>
+(function(){
+  const root = document.querySelector('#kh-page');
+  if (!root) return;
+
+  // IntersectionObserver für die Einblend-Animationen
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('kh-show');
+    });
+  }, { threshold: .12 });
+
+  root.querySelectorAll('.kh-reveal').forEach(el => io.observe(el));
+
+  // 3D-Effekt für die Showcase-Karten
+  root.querySelectorAll('.kh-showcase').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      card.style.transform = `perspective(900px) rotateX(${(r.height/2-y)/42}deg) rotateY(${(x-r.width/2)/42}deg) translateY(-10px)`;
+    });
+    card.addEventListener('mouseleave', () => card.style.transform = '');
+  });
+
+  // GEMEINSAME LIVE-VALIDIERUNG FÜR DAS FORMULAR
+  const form = document.getElementById('kh-premium-form');
+  if (form) {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Verhindert Neuladen der Seite
+
+      // Felder auslesen
+      const nameInput = document.getElementById('kh-name');
+      const emailInput = document.getElementById('kh-email');
+      const messageInput = document.getElementById('kh-message');
+
+      // Fehler-Anzeigen auslesen
+      const errorName = document.getElementById('error-kh-name');
+      const errorEmail = document.getElementById('error-kh-email');
+      const errorMessage = document.getElementById('error-kh-message');
+
+      let isFormValid = true;
+
+      // 1. Validierung Name
+      if (nameInput.value.trim() === "") {
+        nameInput.classList.add('is-invalid');
+        errorName.style.display = 'block';
+        isFormValid = false;
+      } else {
+        nameInput.classList.remove('is-invalid');
+        errorName.style.display = 'none';
+      }
+
+      // 2. Validierung E-Mail (Prüft auf Vorhandensein und korrektes Format)
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailInput.value.trim() === "" || !emailPattern.test(emailInput.value)) {
+        emailInput.classList.add('is-invalid');
+        errorEmail.style.display = 'block';
+        isFormValid = false;
+      } else {
+        emailInput.classList.remove('is-invalid');
+        errorEmail.style.display = 'none';
+      }
+
+      // 3. Validierung Nachricht
+      if (messageInput.value.trim() === "") {
+        messageInput.classList.add('is-invalid');
+        errorMessage.style.display = 'block';
+        isFormValid = false;
+      } else {
+        messageInput.classList.remove('is-invalid');
+        errorMessage.style.display = 'none';
+      }
+
+      // Wenn alles fehlerfrei ist -> Formular ausblenden und Premium-Erfolgsmeldung zeigen
+      if (isFormValid) {
+        form.style.display = 'none';
+        document.getElementById('kh-success-message').style.display = 'block';
+      }
+    });
+
+    // Optionale Verschönerung: Fehler verschwindet sofort, wenn der Nutzer anfängt zu tippen
+    const inputs = form.querySelectorAll('.kh-form-control');
+    inputs.forEach(input => {
+      input.addEventListener('input', function() {
+        if (this.value.trim() !== "") {
+          this.classList.remove('is-invalid');
+          const errorSpan = this.parentNode.querySelector('.kh-error-msg');
+          if (errorSpan) errorSpan.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  // SCROLL-TO-TOP LOGIK
+  const scrollTopBtn = document.getElementById('kh-scroll-top');
+  if (scrollTopBtn) {
+    // Button ein- oder ausblenden je nach Scroll-Position
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        scrollTopBtn.classList.add('is-visible');
+      } else {
+        scrollTopBtn.classList.remove('is-visible');
+      }
+    });
+
+    // Sanftes Hochscrollen beim Klick
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
