@@ -884,7 +884,7 @@
 
   /* Responsive Anpassungen */
   /* ==========================================
-     OPTIMIERTE MOBILE ANPASSUNG (K&H FINETUNING)
+     OPTIMIERTE MOBILE ANPASSUNG (K&H REIHENFOLGE)
      ========================================== */
   @media(max-width:1024px) {
     #kh-page .kh-nav {
@@ -892,27 +892,26 @@
       margin: 12px auto 0;
       padding: 10px 18px;
     }
+    
+    /* Aktiviert Flexbox und dreht die visuelle Reihenfolge mobil um */
     #kh-page .kh-hero {
       min-height: auto;
-      padding: 110px 0 60px; /* Reduziert den oberen Abstand auf Mobilgeräten */
+      padding: 120px 0 40px; /* Genug Abstand nach oben für den Header */
       display: flex;
       flex-direction: column;
     }
-    #kh-page .kh-hero-content {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
+    
+    /* Der Text bekommt Priorität 1 und rutscht nach GANZ OBEN */
     #kh-page .kh-hero-left {
       max-width: 100%;
       padding-right: 0;
       padding-left: 0;
-      text-align: center; /* Zentriert Text mobil für einen sauberen Look */
-    }
-    #kh-page .kh-actions {
-      justify-content: center;
+      text-align: center;
+      order: 1; /* Schiebt das Element an die erste Stelle */
+      margin-bottom: 20px; /* Kleiner Abstand zur nachfolgenden Bilderwand */
     }
     
-    /* Repariert die abgeschnittene Bilderwand aus image.png */
+    /* Die Bilderwand bekommt Priorität 2 und rutscht DARUNTER */
     .kh-hero-wall-bg {
       position: relative;
       top: 0;
@@ -922,20 +921,35 @@
       max-width: 100vw;
       transform: none;
       opacity: 0.95;
-      margin-top: 30px;
+      order: 2; /* Schiebt das Element an die zweite Stelle */
       padding: 10px 0;
-      overflow: hidden; /* Schneidet überstehende Karten sauber ab */
+      overflow: hidden;
     }
+
+    #kh-page .kh-hero-content {
+      display: flex;
+      flex-direction: column;
+    }
+    #kh-page .kh-actions {
+      justify-content: center;
+    }
+    
+    /* Abstände der Buttons optimieren */
+    #kh-page .kh-actions .kh-btn {
+      width: 100%;
+      max-width: 300px;
+    }
+    
     .kh-marquee-row {
-      gap: 16px; /* Kompakterer Abstand mobil */
+      gap: 16px;
       margin-bottom: 16px;
     }
     .kh-wall-card {
-      width: 280px; /* Verkleinert die Karten auf dem Handy, damit mehr sichtbar bleibt */
+      width: 280px;
       height: 190px;
     }
     .kh-mini-content h4 {
-      font-size: 15px; /* Skaliert die Überschriften in den Karten herunter */
+      font-size: 15px;
     }
 
     #kh-page .kh-grid,
