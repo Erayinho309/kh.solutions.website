@@ -796,6 +796,81 @@
     color: #6d6860;
   }
 
+  #kh-page .kh-footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+#kh-page .kh-footer-links {
+  display: flex;
+  gap: 24px;
+  font-weight: 700;
+}
+
+#kh-page .kh-footer-links a:hover {
+  color: var(--kh-gold);
+}
+
+#kh-page .kh-impressum-section {
+  display: none; /* Wird erst sichtbar, wenn man im Footer auf Impressum klickt */
+  padding: 40px 0;
+  border-top: 1px solid var(--kh-line);
+  margin-top: 30px;
+  animation: fadeInContainer 0.5s ease forwards;
+}
+
+#kh-page .kh-impressum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 32px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--kh-muted);
+}
+
+#kh-page .kh-impressum-grid h4 {
+  color: var(--kh-ink);
+  font-size: 16px;
+  font-weight: 950;
+  margin: 0 0 12px;
+}
+
+#kh-page .kh-privacy-section {
+  display: none; /* Wird erst sichtbar, wenn man im Footer auf Datenschutz klickt */
+  padding: 40px 0;
+  border-top: 1px solid var(--kh-line);
+  margin-top: 30px;
+  animation: fadeInContainer 0.5s ease forwards;
+}
+
+#kh-page .kh-privacy-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--kh-muted);
+  text-align: left;
+}
+
+#kh-page .kh-privacy-text h3 {
+  color: var(--kh-ink);
+  font-size: 18px;
+  font-weight: 950;
+  margin: 24px 0 8px;
+}
+
+#kh-page .kh-privacy-text h4 {
+  color: var(--kh-ink);
+  font-size: 15px;
+  font-weight: 950;
+  margin: 16px 0 4px;
+}
+
+#kh-page .kh-privacy-text p {
+  margin: 0 0 12px;
+}
+
   #kh-page .kh-reveal {
     opacity: 0;
     transform: translateY(28px);
@@ -1286,11 +1361,77 @@
     </section>
   </main>
 
-  <footer class="kh-footer kh-wrap">© 2026 K&amp;H Solutions — Premium Webseiten für Unternehmen.</footer>
-  <!-- K&H Eigener Premium Scroll-To-Top Button -->
-  <button id="kh-scroll-top" class="kh-scroll-btn" aria-label="Nach oben scrollen">
-    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  <footer class="kh-footer kh-wrap">
+    <div class="kh-footer-content">
+      <div>© 2026 K&amp;H Solutions — Premium Webseiten für Unternehmen.</div>
+      <div class="kh-footer-links">
+        <a href="#impressum" id="kh-toggle-impressum">Impressum</a>
+        <a href="#datenschutz" id="kh-toggle-privacy">Datenschutz</a>
+      </div>
+    </div>
+
+    <!-- Ausklappbarer Impressums-Bereich -->
+    <div id="kh-impressum" class="kh-impressum-section">
+      <div class="kh-impressum-grid">
+        <div>
+          <h4>Angaben gemäß § 5 TMG</h4>
+          <p>
+            <strong>K&amp;H Solutions GbR</strong><br>
+            Sandhofstraße 29<br>
+            28309 Bremen
+          </p>
+        </div>
+        <div>
+          <h4>Vertreten durch die Gesellschafter</h4>
+          <p>
+            Tugay Keser<br>
+            Eray Harnuboglu
+          </p>
+        </div>
+        <div>
+          <h4>Kontakt</h4>
+          <p>
+            Telefon: [Deine Telefonnummer]<br>
+            E-Mail: info@kh-solutions.de
+          </p>
+        </div>
+        <div>
+          <h4>Umsatzsteuer-ID</h4>
+          <p>
+            Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+            [Folgt nach Beantragung beim Finanzamt]
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Ausklappbarer Datenschutz-Bereich -->
+    <div id="kh-privacy" class="kh-privacy-section">
+      <div class="kh-privacy-text">
+        <h3>Datenschutzerklärung</h3>
+        
+        <h4>1. Datenschutz auf einen Blick</h4>
+        <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
+        
+        <h4>2. Verantwortliche Stelle</h4>
+        <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:<br>
+        <strong>K&amp;H Solutions GbR</strong>, Sandhofstraße 29, 28309 Bremen<br>
+        E-Mail: info@kh-solutions.de</p>
+
+        <h4>3. Datenerfassung auf unserer Website</h4>
+        <p><strong>Hosting über GitHub Pages:</strong> Unsere Website wird bei GitHub Pages gehostet (GitHub Inc., 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, USA). Wenn Sie unsere Seite besuchen, erfasst GitHub automatisch Server-Logfiles (darunter Ihre IP-Adresse, Browsertyp, Datum und Uhrzeit des Zugriffs). Dies ist technisch notwendig, um die Website stabil und sicher bereitzustellen (Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO).</p>
+        
+        <p><strong>Kontaktformular:</strong> Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten (Name, E-Mail-Adresse, Branche, Nachricht) zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert (Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO).</p>
+
+        <h4>4. Ihre Rechte</h4>
+        <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenden Sie sich hierzu einfach per E-Mail an uns.</p>
+      </div>
+    </div>
+    <button id="kh-scroll-top" class="kh-scroll-btn" title="Nach oben scrollen">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 12V2M7 2L2 7M7 2L12 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </button>
+  </footer>
 </div>
 
 <script>
@@ -1405,6 +1546,43 @@
         top: 0,
         behavior: 'smooth'
       });
+    });
+  }
+  // GEORDNETE TOGGLE-LOGIK FÜR IMPRESSUM UND DATENSCHUTZ
+  const toggleImpressum = document.getElementById('kh-toggle-impressum');
+  const impressumSection = document.getElementById('kh-impressum');
+  const togglePrivacy = document.getElementById('kh-toggle-privacy');
+  const privacySection = document.getElementById('kh-privacy');
+
+  if (toggleImpressum && impressumSection) {
+    toggleImpressum.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (privacySection) privacySection.style.display = 'none'; // Schließt Datenschutz
+      
+      if (impressumSection.style.display === 'block') {
+        impressumSection.style.display = 'none';
+      } else {
+        impressumSection.style.display = 'block';
+        setTimeout(() => {
+          impressumSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+    });
+  }
+
+  if (togglePrivacy && privacySection) {
+    togglePrivacy.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (impressumSection) impressumSection.style.display = 'none'; // Schließt Impressum
+      
+      if (privacySection.style.display === 'block') {
+        privacySection.style.display = 'none';
+      } else {
+        privacySection.style.display = 'block';
+        setTimeout(() => {
+          privacySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
     });
   }
 })();
