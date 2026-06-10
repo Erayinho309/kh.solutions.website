@@ -1337,20 +1337,23 @@
             <p>Wir haben Ihre Nachricht erhalten und melden uns innerhalb von 24 Stunden bei Ihnen.</p>
           </div>
 
-          <form id="kh-premium-form" action="#" method="POST" novalidate>
+          <form id="kh-premium-form" action="https://formsubmit.co/service.kh.solutions@gmail.com" method="POST" novalidate>
+            <input type="hidden" name="_next" value="https://erayinho309.github.io/kh.solutions.website/">
+            <input type="hidden" name="_captcha" value="false">
+
             <div class="kh-form-group">
-              <input type="text" id="kh-name" class="kh-form-control" placeholder="Ihr Name">
+              <input type="text" id="kh-name" name="Name" class="kh-form-control" placeholder="Ihr Name">
               <span class="kh-error-msg" id="error-kh-name">Bitte tragen Sie Ihren Namen ein.</span>
             </div>
             <div class="kh-form-group">
-              <input type="email" id="kh-email" class="kh-form-control" placeholder="E-Mail-Adresse">
+              <input type="email" id="kh-email" name="Email" class="kh-form-control" placeholder="E-Mail-Adresse">
               <span class="kh-error-msg" id="error-kh-email">Bitte tragen Sie eine gültige E-Mail-Adresse ein.</span>
             </div>
             <div class="kh-form-group">
-              <input type="text" id="kh-industry" class="kh-form-control" placeholder="Unternehmen / Branche">
+              <input type="text" id="kh-industry" name="Branche" class="kh-form-control" placeholder="Unternehmen / Branche">
             </div>
             <div class="kh-form-group">
-              <textarea id="kh-message" class="kh-form-control" placeholder="Erzählen Sie uns kurz von Ihrem Vorhaben..."></textarea>
+              <textarea id="kh-message" name="Nachricht" class="kh-form-control" placeholder="Erzählen Sie uns kurz von Ihrem Vorhaben..."></textarea>
               <span class="kh-error-msg" id="error-kh-message">Bitte beschreiben Sie kurz Ihr Vorhaben.</span>
             </div>
             <button type="submit" class="kh-submit-btn">Projekt anfragen</button>
@@ -1512,6 +1515,10 @@
       if (isFormValid) {
         form.style.display = 'none';
         document.getElementById('kh-success-message').style.display = 'block';
+        // Zwingt das Formular dazu, die Daten jetzt an FormSubmit zu senden
+        setTimeout(() => {
+          form.submit();
+        }, 1000); // Wartet 1 Sekunde, damit der Nutzer die Erfolgsmeldung kurz sieht
       }
     });
 
